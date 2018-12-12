@@ -48,6 +48,7 @@ int main(int argc, char *argv[]) {
 
 /* ----------- connect() call -------------*/
 connect(sockfd, serv_addr->ai_addr, serv_addr->ai_addrlen);
+ // man getaddrinfo comman will be helpful when it comes to understand the structure 
 
 /*------------------------------------------*/
 
