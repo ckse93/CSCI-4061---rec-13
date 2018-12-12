@@ -49,6 +49,22 @@ int main(int argc, char *argv[]) {
 /* ----------- connect() call -------------*/
 connect(sockfd, serv_addr->ai_addr, serv_addr->ai_addrlen);
  // man getaddrinfo comman will be helpful when it comes to understand the structure 
+ // Given const char type socketfd and const char type serv_addr->ai_addr, which identify and Internet host and a service,
+ //getaddrinfo returns one or more addrinfo structure(s). Each of the structure contains an internet address
+ //to be used in bind() or connect(), which is this function above!
+  
+  /*
+   struct addrinfo {
+               int              ai_flags;
+               int              ai_family;
+               int              ai_socktype;
+               int              ai_protocol;
+               socklen_t        ai_addrlen;
+               struct sockaddr *ai_addr;
+               char            *ai_canonname;
+               struct addrinfo *ai_next;
+           };
+  */
 
 /*------------------------------------------*/
 
@@ -103,4 +119,6 @@ void get_address_string(struct addrinfo *addr, char buffer[]){
     ip_address = (void *) &((struct sockaddr_in6*)addr->ai_addr)->sin6_addr;
   }
   inet_ntop(addr->ai_family, ip_address, buffer, INET6_ADDRSTRLEN);
+  //convert ipv4 or ipv6 addresses from binary into string. 
+  //above function converts ip_address in addr->ai_family into string variable buffer. 
 }
